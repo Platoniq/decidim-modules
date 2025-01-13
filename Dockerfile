@@ -1,4 +1,4 @@
-FROM ruby:3.1.1
+FROM ruby:3.1.1-slim
 
 ENV DEBIAN_FRONTEND=noninteractive \
     RAILS_ENV=production \
@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     zlib1g-dev \
     p7zip \
-    wkhtmltopdf \
     libpq-dev \
     libicu-dev \
     imagemagick \
@@ -31,7 +30,7 @@ WORKDIR /app
 
 COPY Gemfile /app
 COPY Gemfile.lock /app
-RUN bundle install 
+RUN bundle install --without development test
 
 COPY package.json /app
 COPY package-lock.json /app
