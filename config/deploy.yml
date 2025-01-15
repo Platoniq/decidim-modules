@@ -105,7 +105,7 @@ accessories:
   db:
     image: postgres:16
     host: modules.demo.platoniq.net
-    port: 3306
+    port: "127.0.0.1:3306:3306"
     env:
       secret:
         - POSTGRES_PASSWORD
@@ -119,6 +119,6 @@ accessories:
   redis:
     image: valkey/valkey:8
     host: modules.demo.platoniq.net
-    port: 6379
+    port: "127.0.0.1:6379:6379"
     directories:
       - data:/data
