@@ -10,6 +10,7 @@ gem "decidim", "0.28.4"
 # gem "decidim-elections", "0.28.4"
 # gem "decidim-initiatives", "0.28.4"
 # gem "decidim-templates", "0.28.4"
+gem "decidim-decidim_awesome"
 gem "decidim-superspaces", git: "https://github.com/Platoniq/decidim-superspace", branch: "main"
 
 gem "bootsnap", "~> 1.3"
