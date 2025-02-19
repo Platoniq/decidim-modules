@@ -4,12 +4,12 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-gem "decidim", "0.28.4"
-# gem "decidim-conferences", "0.28.4"
-# gem "decidim-design", "0.28.4"
-# gem "decidim-elections", "0.28.4"
-# gem "decidim-initiatives", "0.28.4"
-# gem "decidim-templates", "0.28.4"
+gem "decidim", "0.28.5"
+# gem "decidim-conferences", "0.28.5"
+# gem "decidim-design", "0.28.5"
+# gem "decidim-elections", "0.28.5"
+# gem "decidim-initiatives", "0.28.5"
+# gem "decidim-templates", "0.28.5"
 gem "decidim-decidim_awesome"
 gem "decidim-superspaces", git: "https://github.com/Platoniq/decidim-superspace", branch: "main"
 
@@ -23,7 +23,7 @@ group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
   gem "brakeman", "~> 5.4"
-  gem "decidim-dev", "0.28.4"
+  gem "decidim-dev", "0.28.5"
   gem "net-imap", "~> 0.2.3"
   gem "net-pop", "~> 0.1.1"
   gem "net-smtp", "~> 0.3.1"
