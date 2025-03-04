@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_06_105609) do
+ActiveRecord::Schema.define(version: 2025_03_04_154500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -1504,6 +1504,7 @@ ActiveRecord::Schema.define(version: 2025_02_06_105609) do
     t.string "locale"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "description"
     t.index ["decidim_organization_id"], name: "index_decidim_superspaces_superspaces_on_decidim_organization"
   end
 
