@@ -30,7 +30,7 @@ WORKDIR /app
 
 COPY Gemfile /app
 COPY Gemfile.lock /app
-RUN bundle install --without development test
+RUN bundle config set --local without "development test" && bundle install
 
 COPY package.json /app
 COPY package-lock.json /app
