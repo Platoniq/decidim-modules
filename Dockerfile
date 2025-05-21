@@ -28,10 +28,11 @@ RUN mkdir -p /etc/apt/keyrings && \
 
 WORKDIR /app
 
-RUN gem install bundler -v 2.6.6
 COPY Gemfile /app
 COPY Gemfile.lock /app
-RUN bundle config set --local without "development test" && bundle install
+RUN bundle config set --local without "development test" && \
+    bundle config set --local frozen false && \
+    bundle install
 
 COPY package.json /app
 COPY package-lock.json /app
