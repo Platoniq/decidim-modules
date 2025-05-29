@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_05_21_043166) do
+ActiveRecord::Schema[7.0].define(version: 2025_05_29_123627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_trgm"
@@ -1662,6 +1662,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_21_043166) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "description"
+    t.boolean "show_statistics"
     t.index ["decidim_organization_id"], name: "index_decidim_superspaces_superspaces_on_decidim_organization"
   end
 
