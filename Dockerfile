@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-slim
+FROM ruby:3.3.4-slim
 
 ENV DEBIAN_FRONTEND=noninteractive \
     RAILS_ENV=production \
@@ -53,4 +53,3 @@ ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 HEALTHCHECK CMD curl -f http://localhost:3000/api || exit 1
 
 CMD ["bin/rails", "server", "-b", "0.0.0.0"]
-
