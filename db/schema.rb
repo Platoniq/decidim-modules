@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_09_25_125354) do
+ActiveRecord::Schema[7.0].define(version: 2025_10_27_120117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_trgm"
@@ -1833,6 +1833,96 @@ ActiveRecord::Schema[7.0].define(version: 2025_09_25_125354) do
     t.index ["root_taxonomy_id"], name: "index_decidim_taxonomy_filters_on_root_taxonomy_id"
   end
 
+  create_table "decidim_time_tracker_activities", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.jsonb "description"
+    t.boolean "active"
+    t.datetime "requests_start_at", precision: nil
+    t.datetime "start_date", precision: nil
+    t.datetime "end_date", precision: nil
+    t.integer "max_minutes_per_day"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["task_id"], name: "index_decidim_time_tracker_activities_on_task_id"
+  end
+
+  create_table "decidim_time_tracker_assignations", force: :cascade do |t|
+    t.bigint "decidim_user_id", null: false
+    t.bigint "activity_id", null: false
+    t.integer "status", default: 0
+    t.datetime "invited_at", precision: nil
+    t.bigint "invited_by_user_id"
+    t.datetime "requested_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["activity_id"], name: "index_decidim_time_tracker_assignations_on_activity_id"
+    t.index ["decidim_user_id"], name: "index_decidim_time_tracker_assignations_on_decidim_user_id"
+    t.index ["invited_by_user_id"], name: "index_decidim_time_tracker_assignations_on_invited_by_user_id"
+  end
+
+  create_table "decidim_time_tracker_assignee_data", force: :cascade do |t|
+    t.bigint "time_tracker_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["time_tracker_id"], name: "index_decidim_time_tracker_assignee_data_on_time_tracker_id"
+  end
+
+  create_table "decidim_time_tracker_assignees", force: :cascade do |t|
+    t.bigint "decidim_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["decidim_user_id"], name: "index_decidim_time_tracker_assignees_on_decidim_user_id"
+  end
+
+  create_table "decidim_time_tracker_milestones", force: :cascade do |t|
+    t.bigint "decidim_user_id", null: false
+    t.bigint "activity_id", null: false
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["activity_id"], name: "index_decidim_time_tracker_milestones_on_activity_id"
+    t.index ["decidim_user_id"], name: "index_decidim_time_tracker_milestones_on_decidim_user_id"
+  end
+
+  create_table "decidim_time_tracker_tasks", force: :cascade do |t|
+    t.bigint "time_tracker_id"
+    t.jsonb "name"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["time_tracker_id"], name: "index_decidim_time_tracker_tasks_on_time_tracker_id"
+  end
+
+  create_table "decidim_time_tracker_time_events", force: :cascade do |t|
+    t.bigint "decidim_user_id"
+    t.bigint "assignation_id"
+    t.bigint "activity_id"
+    t.integer "start"
+    t.integer "stop"
+    t.integer "total_seconds", default: 0, null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["activity_id"], name: "index_decidim_time_tracker_time_events_on_activity_id"
+    t.index ["assignation_id"], name: "index_decidim_time_tracker_time_events_on_assignation_id"
+    t.index ["decidim_user_id"], name: "index_decidim_time_tracker_time_events_on_decidim_user_id"
+  end
+
+  create_table "decidim_time_tracker_tos_acceptances", force: :cascade do |t|
+    t.bigint "assignee_id"
+    t.bigint "time_tracker_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["assignee_id"], name: "index_decidim_time_tracker_tos_acceptances_on_assignee_id"
+    t.index ["time_tracker_id"], name: "index_decidim_time_tracker_tos_acceptances_on_time_tracker_id"
+  end
+
+  create_table "decidim_time_trackers", force: :cascade do |t|
+    t.bigint "decidim_component_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["decidim_component_id"], name: "index_decidim_time_trackers_on_decidim_component_id"
+  end
+
   create_table "decidim_user_blocks", force: :cascade do |t|
     t.bigint "decidim_user_id"
     t.integer "blocking_user_id"
@@ -2074,6 +2164,18 @@ ActiveRecord::Schema[7.0].define(version: 2025_09_25_125354) do
   add_foreign_key "decidim_static_pages", "decidim_organizations"
   add_foreign_key "decidim_taxonomy_filter_items", "decidim_taxonomies", column: "taxonomy_item_id"
   add_foreign_key "decidim_taxonomy_filters", "decidim_taxonomies", column: "root_taxonomy_id"
+  add_foreign_key "decidim_time_tracker_activities", "decidim_time_tracker_tasks", column: "task_id"
+  add_foreign_key "decidim_time_tracker_assignations", "decidim_time_tracker_activities", column: "activity_id"
+  add_foreign_key "decidim_time_tracker_assignations", "decidim_users", column: "invited_by_user_id"
+  add_foreign_key "decidim_time_tracker_assignee_data", "decidim_time_trackers", column: "time_tracker_id"
+  add_foreign_key "decidim_time_tracker_assignees", "decidim_users"
+  add_foreign_key "decidim_time_tracker_milestones", "decidim_time_tracker_activities", column: "activity_id"
+  add_foreign_key "decidim_time_tracker_tasks", "decidim_time_trackers", column: "time_tracker_id"
+  add_foreign_key "decidim_time_tracker_time_events", "decidim_time_tracker_activities", column: "activity_id"
+  add_foreign_key "decidim_time_tracker_time_events", "decidim_time_tracker_assignations", column: "assignation_id"
+  add_foreign_key "decidim_time_tracker_time_events", "decidim_users"
+  add_foreign_key "decidim_time_tracker_tos_acceptances", "decidim_time_tracker_assignees", column: "assignee_id"
+  add_foreign_key "decidim_time_tracker_tos_acceptances", "decidim_time_trackers", column: "time_tracker_id"
   add_foreign_key "decidim_user_blocks", "decidim_users"
   add_foreign_key "decidim_user_blocks", "decidim_users", column: "blocking_user_id"
   add_foreign_key "decidim_user_moderations", "decidim_users"

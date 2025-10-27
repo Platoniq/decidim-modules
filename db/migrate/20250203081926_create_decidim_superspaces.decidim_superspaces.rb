@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This migration comes from decidim_superspaces (originally 20241119141836)
 class CreateDecidimSuperspaces < ActiveRecord::Migration[6.1]
   def change
