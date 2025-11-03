@@ -14,6 +14,7 @@ gem "decidim-conferences", DECIDIM_VERSION
 # gem "decidim-templates", DECIDIM_VERSION
 gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "main"
 gem "decidim-superspaces", git: "https://github.com/Platoniq/decidim-superspace", branch: "main"
+gem "decidim-time_tracker", git: "https://github.com/Platoniq/decidim-module-time_tracker", branch: "main"
 
 gem "bootsnap", "~> 1.3"
 
@@ -38,6 +39,6 @@ group :development do
 end
 
 group :production do
-  gem 'aws-sdk-s3', require: false
-  gem 'sidekiq'
+  gem "aws-sdk-s3", require: false
+  gem "sidekiq"
 end

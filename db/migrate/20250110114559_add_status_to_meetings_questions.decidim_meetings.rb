@@ -4,6 +4,7 @@
 # This file has been modified by `decidim upgrade:migrations` task on 2025-09-10 04:01:48 UTC
 class AddStatusToMeetingsQuestions < ActiveRecord::Migration[6.0]
   def change
-    add_column :decidim_meetings_questions, :status, :integer, default: 0, index: true
+    add_column :decidim_meetings_questions, :status, :integer, default: 0
+    add_index :decidim_meetings_questions, :status
   end
 end
