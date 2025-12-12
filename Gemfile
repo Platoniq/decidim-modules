@@ -42,3 +42,5 @@ group :production do
   gem "aws-sdk-s3", require: false
   gem "sidekiq"
 end
+
+gem "decidim-ai", "~> 0.30.2"
