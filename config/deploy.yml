@@ -27,8 +27,7 @@ proxy:
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
-  server: 127.0.0.1:5555
-  # server: localhost:5555
+  server: localhost:5555
   username: 
     - REGISTRY_USER
 
