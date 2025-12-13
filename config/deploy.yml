@@ -53,6 +53,7 @@ env:
     DECIDIM_DEFAULT_LOCALE: "ca"
     STORAGE_PROVIDER: s3
     DECIDIM_FORCE_SSL: false
+    REDIS_URL: "redis://decidim-modules-redis:6379/0"
   secret:
     - RAILS_MASTER_KEY
     - SECRET_KEY_BASE
