@@ -19,6 +19,21 @@ module DecidimModules
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # Configure Redis for production
+    if Rails.env.production?
+      redis_url = ENV.fetch("REDIS_URL", "redis://localhost:6379/0")
+      
+      # Configure cache store
+      config.cache_store = :redis_cache_store, {
+        url: redis_url,
+        connect_timeout: 5,
+        reconnect_attempts: 3,
+        error_handler: -> (method:, returning:, exception:) {
+          Rails.logger.warn("Redis error: #{exception.message}") if defined?(Rails.logger)
+        }
+      }
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
