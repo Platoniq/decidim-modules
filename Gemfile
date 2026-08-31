@@ -8,13 +8,23 @@ DECIDIM_VERSION = "0.30.2"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-conferences", DECIDIM_VERSION
-# gem "decidim-design", DECIDIM_VERSION
+gem "decidim-design", DECIDIM_VERSION
+# decidim-elections has no 0.30 release; it returns in 0.31
 # gem "decidim-elections", DECIDIM_VERSION
-# gem "decidim-initiatives", DECIDIM_VERSION
-# gem "decidim-templates", DECIDIM_VERSION
-gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "main"
-gem "decidim-superspaces", git: "https://github.com/Platoniq/decidim-superspace", branch: "main"
-gem "decidim-time_tracker", git: "https://github.com/Platoniq/decidim-module-time_tracker", branch: "main"
+gem "decidim-initiatives", DECIDIM_VERSION
+gem "decidim-templates", DECIDIM_VERSION
+gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", branch: "release/0.30-stable"
+gem "decidim-superspaces", git: "https://github.com/Platoniq/decidim-superspace", branch: "release/0.30-stable"
+gem "decidim-time_tracker", git: "https://github.com/Platoniq/decidim-module-time_tracker", branch: "release/0.30-stable"
+gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "release/0.30-stable"
+# decidim-comparative_stats pins graphlient < 0.6, which needs faraday < 1.0 and conflicts with Decidim 0.30
+# gem "decidim-comparative_stats", git: "https://github.com/Platoniq/decidim-module-comparative_stats", branch: "release/0.30-stable"
+gem "decidim-direct_verifications", git: "https://github.com/Platoniq/decidim-verifications-direct_verifications", branch: "release/0.30-stable"
+gem "decidim-navigation_maps", git: "https://github.com/Platoniq/decidim-module-navigation_maps", branch: "release/0.30-stable"
+gem "decidim-notify", git: "https://github.com/Platoniq/decidim-module-notify", branch: "release/0.30-stable"
+gem "decidim-social_crowdfunding", git: "https://github.com/Platoniq/decidim-module-social_crowdfunding", branch: "release/0.30-stable"
+gem "decidim-term_customizer", git: "https://github.com/openpoke/decidim-module-term_customizer", branch: "release/0.30-stable"
+gem "decidim-ub", git: "https://github.com/Platoniq/decidim-module-ub", branch: "release/0.30-stable"
 
 gem "bootsnap", "~> 1.3"
 
