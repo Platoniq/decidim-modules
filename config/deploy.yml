@@ -47,7 +47,7 @@ builder:
 env:
   clear:
     RAILS_SERVE_STATIC_FILES: true
-    DECIDIM_APPLICATION_NAME: "Demo Modules"
+    DECIDIM_APPLICATION_NAME: "Decidim 101"
     DECIDIM_MAILER_SENDER: no-reply@platoniq.net
     DECIDIM_AVAILABLE_LOCALES: "en,es,ca"
     DECIDIM_DEFAULT_LOCALE: "ca"
