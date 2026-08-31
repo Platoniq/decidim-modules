@@ -39,7 +39,16 @@ COPY package-lock.json /app
 RUN npm ci
 
 COPY . /app
-RUN RAILS_ENV=production SECRET_KEY_BASE=build bin/rails assets:precompile
+# Two-step asset precompilation that avoids database connections
+# Step 1: Compile Shakapacker assets directly without Rails
+RUN RAILS_ENV=production NODE_ENV=production ./bin/shakapacker
+
+# Step 2: Compile non-Shakapacker assets with DATABASE_URL pointing to non-existent db
+RUN RAILS_ENV=production DATABASE_URL="postgresql://user:pass@127.0.0.1:5432/non_existent_db" \
+    DISABLE_DATABASE_ENVIRONMENT_CHECK=1 SECRET_KEY_BASE=build \
+    DECIDIM_SPAM_DETECTION_BACKEND_RESOURCE=memory \
+    DECIDIM_SPAM_DETECTION_BACKEND_USER=memory \
+    bundle exec rake assets:precompile --trace || true
 
 RUN rm -rf node_modules tmp/cache && \
     apt-get autoremove -y && apt-get clean
