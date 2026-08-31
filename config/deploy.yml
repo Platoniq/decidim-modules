@@ -53,6 +53,8 @@ env:
     DECIDIM_DEFAULT_LOCALE: "ca"
     STORAGE_PROVIDER: s3
     DECIDIM_FORCE_SSL: false
+    DECIDIM_SPAM_DETECTION_BACKEND_RESOURCE_URL: "redis://decidim-modules-redis:6379/2"
+    DECIDIM_SPAM_DETECTION_BACKEND_USER_REDIS_URL: "redis://decidim-modules-redis:6379/3"
   secret:
     - RAILS_MASTER_KEY
     - SECRET_KEY_BASE
