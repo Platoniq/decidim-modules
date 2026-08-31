@@ -15,5 +15,7 @@ echo "🔄 Running database migrations..."
 bundle exec rails db:migrate
 echo "✅ Migrations are all up to date"
 
+rm -f tmp/pids/server.pid
+
 echo "🚀 Starting Rails server..."
 exec "$@"
