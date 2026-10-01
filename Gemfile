@@ -17,7 +17,7 @@ gem "decidim-templates", DECIDIM_VERSION
 # now 0.14.x which requires decidim-core >= 0.31. Pinned to the last commit that builds.
 gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome", ref: "60da172ca1ef7f278eaa2600aecdda8ac8369dcf"
 gem "decidim-superspaces", git: "https://github.com/Platoniq/decidim-superspace", branch: "release/0.30-stable"
-gem "decidim-time_tracker", git: "https://github.com/Platoniq/decidim-module-time_tracker", branch: "release/0.30-stable"
+gem "decidim-time_tracker", git: "https://github.com/Platoniq/decidim-module-time_tracker", branch: "feat/views"
 gem "decidim-alternative_landing", git: "https://github.com/Platoniq/decidim-module-alternative_landing", branch: "release/0.30-stable"
 # decidim-comparative_stats pins graphlient < 0.6, which needs faraday < 1.0 and conflicts with Decidim 0.30
 # gem "decidim-comparative_stats", git: "https://github.com/Platoniq/decidim-module-comparative_stats", branch: "release/0.30-stable"
