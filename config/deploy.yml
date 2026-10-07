@@ -55,6 +55,8 @@ env:
     DECIDIM_FORCE_SSL: false
     DECIDIM_SPAM_DETECTION_BACKEND_RESOURCE_URL: "redis://decidim-modules-redis:6379/2"
     DECIDIM_SPAM_DETECTION_BACKEND_USER_REDIS_URL: "redis://decidim-modules-redis:6379/3"
+    # Demo instance: Time Tracker emails go only to these addresses (see the module README).
+    TIME_TRACKER_EMAIL_ALLOWLIST: "harrison@platoniq.net"
   secret:
     - RAILS_MASTER_KEY
     - SECRET_KEY_BASE
